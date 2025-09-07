@@ -4,7 +4,7 @@ from typing import Optional, Dict, Any, List
 from fastapi import HTTPException, Header, Query
 
 # Import from other modules
-from .core import (
+from .model import (
     ProductIn, WalletTopupIn, BuyRequest, AddToCartIn,
     RemoveFromCartIn, _make_product_dict
 )

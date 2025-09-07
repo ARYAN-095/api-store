@@ -19,7 +19,7 @@ from .sdk import (
     reset_all_logic
 )
 
-from .core import (
+from .model import (
     ProductIn, WalletTopupIn, BuyRequest, AddToCartIn,
     RemoveFromCartIn
 )
