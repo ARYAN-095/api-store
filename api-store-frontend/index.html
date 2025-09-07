@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyStore API Demo (Rupees)</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- JSON-formatter for beautiful JSON display -->
+    <script src="https://cdn.jsdelivr.net/npm/json-formatter-js@2.3.4/dist/json-formatter.umd.js"></script>
+</head>
+<body>
+    <header>
+        <h1>🛍️ PyStore Full API Demo (Rupees)</h1>
+    </header>
+
+    <main>
+        <div class="user-info">
+            <label for="userEmail">User Email:</label>
+            <input type="email" id="userEmail" value="user@example.com">
+            <button onclick="refreshUserData()" data-original-text="Refresh Data">Refresh Data</button>
+        </div>
+
+        <section class="api-section">
+            <h2>📦 Products & Seller</h2>
+            <div id="productMessages"></div>
+            <div class="action-grid">
+                <div class="action-box">
+                    <h3>Register Product</h3>
+                    <input type="text" id="regName" placeholder="Name" required>
+                    <input type="number" id="regPrice" placeholder="Price (Rupees)" required>
+                    <input type="number" id="regQty" placeholder="Quantity" required>
+                    <input type="text" id="regCategory" placeholder="Category (optional)">
+                    <button onclick="registerProduct()" data-original-text="Register">Register</button>
+                </div>
+                <div class="action-box">
+                    <h3>Search / Get Product</h3>
+                    <input type="text" id="searchName" placeholder="Search by name">
+                    <button onclick="searchProducts()" data-original-text="Search">Search</button>
+                    <input type="text" id="getProductId" placeholder="Get by ID">
+                    <button onclick="getProduct()" data-original-text="Get">Get</button>
+                </div>
+                <div class="action-box">
+                    <h3>Product Catalog</h3>
+                    <button onclick="listProducts('all')" data-original-text="List All Products">List All Products</button>
+                    <button onclick="listProducts('available')" data-original-text="List Available">List Available</button>
+                </div>
+            </div>
+            <div id="productResults" class="results-container"></div>
+        </section>
+
+        <section class="api-section">
+            <h2>👛 Wallet Actions</h2>
+            <div id="walletMessages"></div>
+            <div class="action-grid">
+                <div class="action-box">
+                    <h3>View Wallet</h3>
+                    <button onclick="viewWallet()" data-original-text="View My Wallet">View My Wallet</button>
+                    <div id="walletInfo" class="info-display"></div>
+                </div>
+                <div class="action-box">
+                    <h3>Top Up Wallet</h3>
+                    <input type="number" id="topupAmount" placeholder="Amount (Rupees)" required>
+                    <button onclick="topupWallet()" data-original-text="Top Up">Top Up</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="api-section">
+            <h2>🛒 Shopping Cart</h2>
+            <div id="cartMessages"></div>
+            <div class="action-grid">
+                <div class="action-box">
+                    <h3>Add to Cart</h3>
+                    <input type="text" id="addProductId" placeholder="Product ID" required>
+                    <input type="number" id="addQty" placeholder="Quantity" value="1" required>
+                    <button onclick="addToCart()" data-original-text="Add">Add</button>
+                </div>
+                <div class="action-box">
+                    <h3>Remove from Cart</h3>
+                    <input type="text" id="removeProductId" placeholder="Product ID" required>
+                    <input type="number" id="removeQty" placeholder="Quantity (optional)">
+                    <button onclick="removeFromCart()" data-original-text="Remove">Remove</button>
+                </div>
+                <div class="action-box">
+                    <h3>View Cart</h3>
+                    <button onclick="viewCart()" data-original-text="View My Cart">View My Cart</button>
+                </div>
+            </div>
+            <div id="cartResults" class="results-container"></div>
+            
+            <div class="action-grid">
+                <div class="action-box">
+                    <h3>Checkout Cart</h3>
+                    <button class="checkout-button" onclick="placeOrder()" data-original-text="Place Order">Place Order</button>
+                </div>
+                <div class="action-box">
+                    <h3>Direct Buy</h3>
+                    <input type="text" id="buyProductId" placeholder="Product ID" required>
+                    <input type="number" id="buyQty" placeholder="Quantity" required>
+                    <button class="buy-button" onclick="buyProduct()" data-original-text="Buy Now">Buy Now</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="api-section">
+            <h2>📋 Orders & Utilities</h2>
+            <div id="ordersMessages"></div>
+            <div class="action-grid">
+                <div class="action-box">
+                    <h3>List Orders</h3>
+                    <button onclick="listOrders()" data-original-text="List My Orders">List My Orders</button>
+                </div>
+                 
+                <div class="action-box">
+                    <h3>System Utilities</h3>
+                    <button onclick="resetStore()" data-original-text="Reset All Data">Reset All Data</button>
+                </div>
+            </div>
+            <div id="ordersResults" class="results-container"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: pystore-api
+    ports:
+      - "8085:8085"
+    restart: unless-stopped
+
+  cli:
+    build: .
+    container_name: pystore-cli
+    stdin_open: true
+    tty: true
+    entrypoint: ["python", "cli.py"]
+    depends_on:
+      - api
+
+  frontend:
+    image: nginx:alpine
+    container_name: pystore-frontend
+    ports:
+      - "8000:80"
+    volumes:
+      - ./api-store-frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - api
