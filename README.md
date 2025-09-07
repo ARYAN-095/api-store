@@ -1,5 +1,5 @@
 # PyStore — In-memory demo API + Python SDK
-https://img.shields.io/badge/PyStore-FastAPI%2520%252B%2520SDK-blue
+ 
 
 A lightweight, in-memory FastAPI e-commerce demo with a fully-featured Python SDK. Perfect for demonstrating API design, concurrency handling, idempotent operations, and client library development.
 It's about building a cohesive ecosystem where a powerful API, a reusable SDK, and multiple user interfaces all work together seamlessly. This demonstrates a deep understanding of software design principles and best practices for building robust, real-world applications.  
