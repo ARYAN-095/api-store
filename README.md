@@ -1,8 +1,12 @@
 # PyStore — In-memory demo API + Python SDK
+
+![Alt text](cli_img.png)
+
  
 
 A lightweight, in-memory FastAPI e-commerce demo with a fully-featured Python SDK. Perfect for demonstrating API design, concurrency handling, idempotent operations, and client library development.
 It's about building a cohesive ecosystem where a powerful API, a reusable SDK, and multiple user interfaces all work together seamlessly. This demonstrates a deep understanding of software design principles and best practices for building robust, real-world applications.  
+
 
 # ✨ Features
 - RESTful API with FastAPI
@@ -183,6 +187,9 @@ pytest -v
 ```
 
 # 🌐 Frontend
+
+
+![Alt text](ui.png)
 
 
 The static frontend is served at http://localhost:8080 when using Docker Compose.
