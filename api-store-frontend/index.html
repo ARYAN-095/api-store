@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PyStore API Demo (Rupees)</title>
     <link rel="stylesheet" href="style.css">
-    <!-- JSON-formatter for beautiful JSON display -->
-    <script src="https://cdn.jsdelivr.net/npm/json-formatter-js@2.3.4/dist/json-formatter.umd.js"></script>
 </head>
 <body>
     <header>
@@ -33,19 +31,18 @@
                     <button onclick="registerProduct()" data-original-text="Register">Register</button>
                 </div>
                 <div class="action-box">
-                    <h3>Search / Get Product</h3>
+                    <h3>Search Products</h3>
                     <input type="text" id="searchName" placeholder="Search by name">
                     <button onclick="searchProducts()" data-original-text="Search">Search</button>
-                    <input type="text" id="getProductId" placeholder="Get by ID">
-                    <button onclick="getProduct()" data-original-text="Get">Get</button>
                 </div>
                 <div class="action-box">
                     <h3>Product Catalog</h3>
-                    <button onclick="listProducts('all')" data-original-text="List All Products">List All Products</button>
-                    <button onclick="listProducts('available')" data-original-text="List Available">List Available</button>
+                    <button onclick="listProducts('all', event)" data-original-text="List All Products">List All Products</button>
+                    <button onclick="listProducts('available', event)" data-original-text="List Available">List Available</button>
                 </div>
             </div>
             <div id="productResults" class="results-container"></div>
+            
         </section>
 
         <section class="api-section">
@@ -110,7 +107,6 @@
                     <h3>List Orders</h3>
                     <button onclick="listOrders()" data-original-text="List My Orders">List My Orders</button>
                 </div>
-                 
                 <div class="action-box">
                     <h3>System Utilities</h3>
                     <button onclick="resetStore()" data-original-text="Reset All Data">Reset All Data</button>

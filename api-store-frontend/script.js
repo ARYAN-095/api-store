@@ -1,5 +1,5 @@
-//const isDocker = window.location.hostname === 'localhost' && window.location.port === '8000';
-const BASE_URL = "http://localhost:8085";
+ 
+const BASE_URL =  'http://localhost:8087';
 const CURRENCY_SYMBOL = '₹';
 
 // Centralized message display function
@@ -21,11 +21,10 @@ function getUserEmail() {
     return document.getElementById('userEmail').value;
 }
 
-// Updated to display data in a human-readable card format
 function displayResult(elementId, data) {
     const el = document.getElementById(elementId);
     if (!el) return;
-    el.innerHTML = ''; // Clear previous results
+    el.innerHTML = '';
     
     const renderObject = (obj) => {
         let detailsHtml = '';
@@ -82,16 +81,33 @@ function displayResult(elementId, data) {
     }
 }
 
-
 function clearResultsAndMessages() {
-    document.getElementById('productResults').innerHTML = '';
-    document.getElementById('productMessages').innerHTML = '';
-    document.getElementById('walletInfo').innerHTML = '';
-    document.getElementById('walletMessages').innerHTML = '';
-    document.getElementById('cartResults').innerHTML = '';
-    document.getElementById('cartMessages').innerHTML = '';
-    document.getElementById('ordersResults').innerHTML = '';
-    document.getElementById('ordersMessages').innerHTML = '';
+    const productResultsEl = document.getElementById('productResults');
+    if (productResultsEl) productResultsEl.innerHTML = '';
+    
+    const productMessagesEl = document.getElementById('productMessages');
+    if (productMessagesEl) productMessagesEl.innerHTML = '';
+    
+    const walletInfoEl = document.getElementById('walletInfo');
+    if (walletInfoEl) walletInfoEl.innerHTML = '';
+    
+    const walletMessagesEl = document.getElementById('walletMessages');
+    if (walletMessagesEl) walletMessagesEl.innerHTML = '';
+    
+    const cartResultsEl = document.getElementById('cartResults');
+    if (cartResultsEl) cartResultsEl.innerHTML = '';
+    
+    const cartMessagesEl = document.getElementById('cartMessages');
+    if (cartMessagesEl) cartMessagesEl.innerHTML = '';
+    
+    const ordersResultsEl = document.getElementById('ordersResults');
+    if (ordersResultsEl) ordersResultsEl.innerHTML = '';
+    
+    const ordersMessagesEl = document.getElementById('ordersMessages');
+    if (ordersMessagesEl) ordersMessagesEl.innerHTML = '';
+    
+    const cartItemsDisplayEl = document.getElementById('cartItemsDisplay');
+    if (cartItemsDisplayEl) cartItemsDisplayEl.innerHTML = '';
 }
 
 function setButtonLoading(button, isLoading) {
@@ -129,7 +145,7 @@ async function registerProduct() {
     try {
         const payload = {
             name: name,
-            price_cents: price, // Backend still expects 'price_cents'
+            price_cents: price,
             quantity: quantity,
             category: category || "general"
         };
@@ -267,7 +283,7 @@ async function topupWallet() {
         if (response.ok) {
             displayResult('ordersResults', result);
             displayMessage('walletMessages', `Wallet topped up successfully! New balance: ${CURRENCY_SYMBOL}${result.balance_cents}`, 'success');
-            viewWallet(); // Immediate wallet display update
+            viewWallet();
         } else {
             displayMessage('walletMessages', `Error: ${result.detail}`, 'error');
         }
@@ -308,6 +324,7 @@ async function addToCart() {
         } else {
             displayMessage('cartMessages', `Error: ${result.detail}`, 'error');
         }
+
     } catch (error) {
         displayMessage('cartMessages', `An error occurred: ${error.message}`, 'error');
     } finally {
@@ -499,7 +516,7 @@ async function resetStore() {
         const response = await fetch(`${BASE_URL}/reset`, { method: 'POST' });
         const result = await response.json();
         displayMessage('ordersMessages', 'Store has been reset. All data is cleared.', 'success');
-        location.reload(); // Reload the page to reset the UI
+        location.reload();
     } catch (error) {
         displayMessage('ordersMessages', `An error occurred: ${error.message}`, 'error');
     } finally {
@@ -508,12 +525,11 @@ async function resetStore() {
 }
 
 async function refreshUserData() {
-    clearResultsAndMessages(); // Clear all fields on refresh
+    clearResultsAndMessages();
     await viewWallet();
     await viewCart();
     await listProducts('all', null);
     await listOrders();
 }
 
-// Initial data load on page load
 window.onload = refreshUserData;
